@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Seminar Teknologi Nasional</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f5ff;
+            background-image: url('bgweb.jpg');
+        }
+        header {
+            background-color: #6bb7e6;
+            color: white;
+            padding: 1px 0;
+            text-align: center;
+            
+        }
+        footer {
+            background-color: #6bb7e6;
+            color: black;
+            text-align: center;
+            padding: 2px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .card-title {
+            text-align: center;
+        }
+        
+        .sidebar {
+            background-color: none;
+            padding: 10px;
+            border-right: 1px solid #818C78;
+            display: none; 
+            position: absolute; 
+            z-index: 1000; 
+            width: 200px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            right: 0; 
+        }
+        .sidebar :hover {
+            background-color: #343a40;
+        
+        }
+        .sidebar-toggle {
+            cursor: pointer; 
+            position: absolute; 
+            right: 20px; 
+            top: 15px; 
+            font-size: 24px; 
+            color: rgb(0, 0, 0); 
+        }
+        .btnsecondary {
+            background-color: #aeaeae;
+            border-radius: 20px;
+            color: black;
+           padding: 5px 200px;
+           margin-right: 25%;
+           margin-left: 25%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-blue">
+            <img src="logopnm.png" alt="pnmlogo" style=" height: 45px; width: auto; margin-right: 10px;"> 
+            <a class="navbar-brand" href="#"><b>IT PNM Summit</b></a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- Ikon tiga garis -->
+            <span class="sidebar-toggle" id="toggleSidebar">&#9776;</span> 
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Form Registrasi</b></h5>
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" placeholder="ex:karlita agustin wardhani" required>
+                                <div class="invalid-feedback" id="nameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="ex:karlitawd9@gmail.com" required>
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="ex:12345678" required>
+                                <div class="invalid-feedback" id="passwordError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Konfirmasi Password </label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="ex:12345678" required>
+                                <div class="invalid-feedback" id="confirmPasswordError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Tanggal Lahir</label>
+                                <input type="date" class="form-control" id="dob" max="2006-12-31" required>
+                                <div class="invalid-feedback" id="dobError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor Hp</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="ex:(+62)8**********" required>
+                                <div class="invalid-feedback" id="phoneError"></div>
+                            </div>
+                            <button type="submit" class="btnsecondary" id="submitBtn" disabled>Daftar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="sidebar" id="sidebar">
+                    <h5>Menu</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#">Home</a></li>
+                        <li class="list-group-item"><a href="#">Registrasi</a></li>
+                        <li class="list-group-item"><a href="#">Tentang kami</a></li>
+                        <li class="list-group-item"><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy;<b>2025 IT PNM Summit-Karlita Agustin Wardhani.</b></p>
+    </footer>
+    <script>
+        const form = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const sidebar = document.getElementById('sidebar');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const dob = document.getElementById('dob');
+            const phone = document.getElementById('phone');
+            
+            if (name.value.length < 3) {
+                name.classList.add('is-invalid');
+                document.getElementById('nameError').textContent = 'Masukkan nama minimal 3 karakter';
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+            }
+            
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                email.classList.add('is-invalid');
+                document.getElementById('emailError').textContent = 'Masukkan email yang valid';
+                isValid = false;
+            } else {
+                email.classList.remove('is-invalid');
+            }
+            
+            if (password.value.length < 8) {
+                password.classList.add('is-invalid');
+                document.getElementById('passwordError').textContent = 'Password minimal 8 karakter';
+                isValid = false;
+            } else {
+                password.classList.remove('is-invalid');
+            }
+            
+            if (confirmPassword.value !== password.value) {
+                confirmPassword.classList.add('is-invalid');
+                document.getElementById('confirmPasswordError').textContent = 'Password tidak cocok';
+                isValid = false;
+            } else {
+                confirmPassword.classList.remove('is-invalid');
+            }
+            
+            const birthYear = new Date(dob.value).getFullYear();
+            if (birthYear > 2006) {
+                dob.classList.add('is-invalid');
+                document.getElementById('dobError').textContent = 'Anda harus lahir sebelum tahun 2006';
+                isValid = false;
+            } else {
+                dob.classList.remove('is-invalid');
+            }
+            
+            const phonePattern = /^\+62[0-9]{9,13}$/;
+            if (!phonePattern.test(phone.value)) {
+                phone.classList.add('is-invalid');
+                document.getElementById('phoneError').textContent = 'Nomor telepon harus sesuai format Indonesia (+6285678910)';
+                isValid = false;
+            } else {
+                phone.classList.remove('is-invalid');
+            }
+            
+            submitBtn.disabled = !isValid;
+            submitBtn.classList.toggle('btn-primary', isValid);
+            submitBtn.classList.toggle('btn-secondary', !isValid);
+        }
+        
+        form.addEventListener('input', validateForm);
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            // Menampilkan pesan sukses
+            const successMessage = document.createElement('div');
+            successMessage.className = 'alert alert-success mt-3';
+            successMessage.textContent = 'Registrasi berhasil! Terima kasih telah mendaftar.';
+            document.querySelector('.card-body').appendChild(successMessage);
+            
+            // Reset form setelah beberapa detik
+            setTimeout(() => {
+                form.reset();
+                submitBtn.disabled = true; 
+                successMessage.remove();
+            }, 3000); 
+        });
+
+        toggleSidebar.addEventListener('click', function() {
+            sidebar.style.display = sidebar.style.display === 'none' || sidebar.style.display === '' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
